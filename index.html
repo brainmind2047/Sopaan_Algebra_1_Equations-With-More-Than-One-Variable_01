@@ -3,45 +3,1803 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Sopaan Practice Series</title>
+<title>Sopaan · Equations with More Than One Variable</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <style>
-:root{--navy:#16264A;--navy-2:#1F3B6B;--gold:#C79A3E;--gold-soft:#F3E7C9;--paper:#FBF9F4;--card:#FFFFFF;--ink:#211E1A;--ink-soft:#655D4C;--rule:#E4DCC8;--accent-text:#1F3B6B;color-scheme:light}
-@media (prefers-color-scheme:dark){:root{--navy:#0E1830;--navy-2:#16264A;--gold:#E0B75B;--gold-soft:#3A2F16;--paper:#141210;--card:#1C1914;--ink:#EDE7DA;--ink-soft:#B2A996;--rule:#3A342A;--accent-text:#E0B75B;color-scheme:dark}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:'Source Sans 3',-apple-system,'Segoe UI',sans-serif}
-header{background:linear-gradient(155deg,var(--navy),var(--navy-2));color:#F4EFDF;padding:calc(28px + env(safe-area-inset-top,0px)) 20px 30px}
-.in{max-width:900px;margin:0 auto}
-.row{display:flex;align-items:center;gap:12px}
-.crest{width:46px;height:46px;border-radius:10px;background:var(--gold);color:#16264A;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:700;font-size:19px}
-.bn{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700}
-h1{font-family:'Fraunces',Georgia,serif;font-size:30px;margin:0}
-.lead{margin:16px 0 0;color:#CFD7EA;font-size:15px;max-width:60ch;line-height:1.5}
-main{max-width:900px;margin:0 auto;padding:22px 16px 48px}
-h2{font-family:'Fraunces',Georgia,serif;font-size:18px;margin:8px 0 12px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
-a.card{display:block;text-decoration:none;color:inherit;background:var(--card);border:1.5px solid var(--rule);border-radius:14px;padding:18px}
-a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
-.eb{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
-.t{font-family:'Fraunces',Georgia,serif;font-size:20px;margin:4px 0 6px}
-.d{font-size:13.5px;color:var(--ink-soft);line-height:1.5}
-.go{display:inline-block;margin-top:12px;font-size:13px;font-weight:700;color:var(--accent-text)}
-footer{text-align:center;font-size:12px;color:var(--ink-soft);padding:0 16px 28px}
+  html,body{margin:0;} img{max-width:100%;} [hidden]{display:none !important;}
+  :root{
+    --navy:#16264A; --navy-2:#1F3B6B; --gold:#C79A3E; --gold-soft:#F3E7C9;
+    --paper:#FBF9F4; --paper-2:#F1EAD8; --card:#FFFFFF;
+    --ink:#211E1A; --ink-soft:#655D4C; --rule:#E4DCC8;
+    --success:#2E8B57; --success-soft:#E1F2E7;
+    --danger:#BF4B45; --danger-soft:#FAE3E1;
+    --locked:#C7BEA9;
+    --focus:#1F3B6B;
+    --accent-text:#1F3B6B; --retry-text:#8A661F;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --navy:#0E1830; --navy-2:#16264A; --gold:#E0B75B; --gold-soft:#3A2F16;
+      --paper:#141210; --paper-2:#1C1914; --card:#1C1914;
+      --ink:#EDE7DA; --ink-soft:#B2A996; --rule:#3A342A;
+      --success:#7BC79A; --success-soft:#1B2E22;
+      --danger:#E38884; --danger-soft:#331D1B;
+      --locked:#4A4436;
+      --focus:#E0B75B;
+      --accent-text:#E0B75B; --retry-text:#E0B75B;
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --navy:#0E1830; --navy-2:#16264A; --gold:#E0B75B; --gold-soft:#3A2F16;
+    --paper:#141210; --paper-2:#1C1914; --card:#1C1914;
+    --ink:#EDE7DA; --ink-soft:#B2A996; --rule:#3A342A;
+    --success:#7BC79A; --success-soft:#1B2E22;
+    --danger:#E38884; --danger-soft:#331D1B;
+    --locked:#4A4436;
+    --focus:#E0B75B;
+    --accent-text:#E0B75B; --retry-text:#E0B75B;
+    color-scheme:dark;
+  }
+
+  *{box-sizing:border-box;}
+  body{background:var(--paper); color:var(--ink); font-family:'Source Sans 3',-apple-system,'Segoe UI',sans-serif; padding-inline:0; padding-block:0;}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif; text-wrap:balance; margin:0;}
+  .num{font-family:'IBM Plex Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums;}
+
+  header.brand{
+    background:linear-gradient(155deg,var(--navy) 0%, var(--navy-2) 100%);
+    color:#F4EFDF; padding-block:calc(20px + env(safe-area-inset-top,0px)) 18px; padding-inline:20px;
+  }
+  .brand-row{display:flex; align-items:center; gap:12px; max-width:900px; margin:0 auto;}
+  .crest{
+    width:42px; height:42px; border-radius:10px; background:var(--gold); color:var(--navy);
+    display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:700; font-size:18px; flex-shrink:0;
+  }
+  .brand-name{font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); font-weight:700;}
+  .series-name{font-size:19px; font-weight:700; font-family:'Fraunces',serif;}
+  .chapter-eyebrow{max-width:900px; margin:14px auto 0; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:#AEB9D6;}
+  .chapter-title{font-size:28px; max-width:900px; margin:2px auto 0;}
+  .chapter-sub{font-size:14.5px; color:var(--gold); font-weight:700; max-width:900px; margin:3px auto 0;}
+
+  .chapter-progress{max-width:900px; margin:14px auto 0; display:flex; align-items:center; gap:10px;}
+  .cp-track{flex:1; height:6px; border-radius:99px; background:rgba(255,255,255,.18); overflow:hidden;}
+  .cp-fill{height:100%; background:var(--gold); border-radius:99px; transition:width .3s ease;}
+  .cp-label{font-size:11.5px; color:#CFD7EA; white-space:nowrap;}
+
+  .tabbar{position:sticky; top:env(safe-area-inset-top,0px); z-index:15; background:var(--paper); border-bottom:1px solid var(--rule); overflow-x:auto; white-space:nowrap;}
+  .tabbar-inner{max-width:900px; margin:0 auto; display:flex; padding-inline:16px;}
+  .tab-btn{font-family:inherit; font-size:14px; font-weight:600; color:var(--ink-soft); background:none; border:none; padding:13px 16px; cursor:pointer; position:relative; flex-shrink:0;}
+  .tab-btn.active{color:var(--accent-text);}
+  .tab-btn.active::after{content:''; position:absolute; left:12px; right:12px; bottom:0; height:3px; background:var(--gold); border-radius:3px 3px 0 0;}
+  .tab-count{font-size:11px; color:var(--ink-soft); margin-left:5px;}
+
+  .slide-progress{max-width:900px; margin:0 auto; padding:10px 16px 0; display:flex; align-items:center; gap:10px;}
+  .sp-track{flex:1; height:5px; border-radius:99px; background:var(--rule); overflow:hidden;}
+  .sp-fill{height:100%; background:var(--accent-text); border-radius:99px; transition:width .3s ease;}
+  .sp-label{font-size:12px; color:var(--ink-soft); white-space:nowrap; font-weight:600;}
+
+  .wrap{max-width:900px; margin:0 auto; padding:16px 16px calc(110px + env(safe-area-inset-bottom,0px));}
+
+  .qcard{background:var(--card); border:1px solid var(--rule); border-radius:14px; padding:18px;}
+  .qhead{display:flex; align-items:flex-start; gap:10px; margin-bottom:10px;}
+  .qnum{width:32px; height:32px; border-radius:8px; background:var(--gold-soft); color:var(--accent-text); display:flex; align-items:center; justify-content:center; font-weight:700; font-family:'Fraunces',serif; flex-shrink:0; font-size:14px;}
+  .qtext{font-size:16px; line-height:1.55; flex:1;}
+  .qtag{font-size:10.5px; color:var(--gold); background:var(--gold-soft); padding:2px 7px; border-radius:99px; font-weight:700; margin-left:6px; white-space:nowrap;}
+  .marks-pill{font-size:11px; font-weight:700; color:var(--ink-soft); border:1px solid var(--rule); padding:3px 9px; border-radius:99px; margin-left:auto; flex-shrink:0; white-space:nowrap;}
+  .step-badge{font-size:11px; font-weight:700; color:var(--accent-text); background:var(--paper-2); border:1px solid var(--rule); padding:3px 9px; border-radius:99px; display:inline-block; margin-bottom:12px;}
+
+  .options{display:flex; flex-direction:column; gap:8px; margin-top:10px;}
+  .opt{display:flex; align-items:center; gap:10px; padding:11px 12px; border:1.5px solid var(--rule); border-radius:10px; cursor:pointer; font-size:15px; background:var(--paper);}
+  .opt input{accent-color:var(--navy-2);}
+  .opt.is-correct{border-color:var(--success); background:var(--success-soft);}
+  .opt.is-wrong{border-color:var(--danger); background:var(--danger-soft);}
+  .opt.locked{cursor:not-allowed;}
+
+  .subpart-label{font-weight:700; font-size:12.5px; color:var(--accent-text); text-transform:uppercase; letter-spacing:.03em; margin:14px 0 6px;}
+  .or-divider{text-align:center; font-size:11px; font-weight:700; letter-spacing:.08em; color:var(--ink-soft); margin:8px 0;}
+
+  .steps{display:flex; flex-direction:column; gap:10px;}
+  .step-line{font-size:14.5px; line-height:1.9; background:var(--paper); border:1px dashed var(--rule); border-radius:10px; padding:9px 12px;}
+  .step-line.resolved{opacity:.9;}
+  .blank-input{font-family:'IBM Plex Mono',monospace; font-size:14px; border:1.5px solid var(--rule); border-radius:6px; padding:3px 8px; width:120px; background:var(--card); color:var(--ink); margin:0 2px;}
+  .blank-input:focus{outline:none; border-color:var(--focus); box-shadow:0 0 0 3px var(--gold-soft);}
+  .blank-input.is-correct{border-color:var(--success); background:var(--success-soft);}
+  .blank-input.is-wrong{border-color:var(--danger); background:var(--danger-soft);}
+  .blank-input[disabled]{opacity:.85;}
+  .reveal-note{font-size:12px; color:var(--danger); padding-left:2px; margin-top:-2px;}
+
+  .feedback{font-size:13.5px; padding:10px 12px; border-radius:9px; margin-top:14px; display:none;}
+  .feedback.show{display:block;}
+  .feedback.ok{background:var(--success-soft); color:var(--success);}
+  .feedback.retry{background:var(--gold-soft); color:var(--retry-text);}
+  .feedback.reveal{background:var(--danger-soft); color:var(--danger);}
+  .feedback.err{background:var(--danger-soft); color:var(--danger);}
+  .attempts-dots{display:inline-flex; gap:4px; margin-left:2px;}
+  .attempts-dots span{width:6px; height:6px; border-radius:50%; background:var(--ink-soft); opacity:.3; display:inline-block;}
+  .attempts-dots span.used{opacity:1; background:var(--danger);}
+
+  .ar-box{background:var(--paper-2); border-radius:10px; padding:10px 12px; margin-bottom:12px; font-size:13px; color:var(--ink-soft);}
+
+  .navbar{
+    position:fixed; left:0; right:0; bottom:0; z-index:30; background:var(--paper);
+    border-top:1px solid var(--rule); padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+  }
+  .navbar-inner{max-width:900px; margin:0 auto; display:flex; gap:8px; flex-wrap:wrap; align-items:center;}
+  .btn{font-family:inherit; font-size:13.5px; font-weight:700; padding:10px 14px; border-radius:9px; border:1.5px solid var(--rule); background:var(--card); color:var(--ink); cursor:pointer;}
+  .btn:hover{border-color:var(--navy-2);}
+  .btn:disabled{opacity:.4; cursor:not-allowed;}
+  .btn-primary{background:var(--navy-2); color:#fff; border-color:var(--navy-2);}
+  .navbar .spacer{flex:1;}
+
+  .fab{position:fixed; right:16px; bottom:calc(74px + env(safe-area-inset-bottom,0px)); background:var(--gold); color:var(--navy); border:none; border-radius:999px; padding:11px 16px; font-family:inherit; font-weight:700; font-size:13px; display:flex; align-items:center; gap:7px; cursor:pointer; box-shadow:0 6px 16px rgba(0,0,0,.18); z-index:35;}
+  .fab-badge{background:rgba(255,255,255,.55); border-radius:99px; padding:1px 7px; font-size:11px;}
+
+  .overlay{position:fixed; inset:0; background:rgba(20,18,14,.45); z-index:50; display:none; align-items:flex-end; justify-content:center;}
+  .overlay.show{display:flex;}
+  .palette{background:var(--card); width:min(480px,100%); max-height:78vh; overflow-y:auto; border-radius:18px 18px 0 0; padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px)); border:1px solid var(--rule); border-bottom:none;}
+  @media (min-width:640px){ .overlay{align-items:center;} .palette{border-radius:18px; border-bottom:1px solid var(--rule); max-height:74vh;} }
+  .palette-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;}
+  .palette-head h2{font-size:16px;}
+  .palette-close{background:none; border:none; font-size:20px; color:var(--ink-soft); cursor:pointer; padding:4px;}
+  .palette-legend{display:flex; gap:12px; flex-wrap:wrap; font-size:11px; color:var(--ink-soft); margin:10px 0 14px;}
+  .palette-legend span{display:inline-flex; align-items:center; gap:5px;}
+  .dot{width:9px; height:9px; border-radius:50%; display:inline-block;}
+  .dot.correct{background:var(--success);} .dot.revealed{background:var(--danger);}
+  .dot.skipped{background:var(--gold);} .dot.locked{background:var(--locked);}
+  .dot.current{background:var(--navy-2);}
+  .chip-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(48px,1fr)); gap:8px;}
+  .chip{border:1.5px solid var(--rule); border-radius:9px; padding:8px 4px; text-align:center; font-family:'IBM Plex Mono',monospace; font-size:12.5px; font-weight:600; cursor:pointer; background:var(--paper); color:var(--ink);}
+  .chip[data-status="correct"]{border-color:var(--success); background:var(--success-soft); color:var(--success);}
+  .chip[data-status="revealed"]{border-color:var(--danger); background:var(--danger-soft); color:var(--danger);}
+  .chip[data-status="skipped"]{border-color:var(--gold); background:var(--gold-soft); color:var(--retry-text);}
+  .chip[data-status="locked"]{border-color:var(--rule); color:var(--locked); cursor:not-allowed; background:var(--paper-2);}
+  .chip[data-status="current"]{outline:2px solid var(--navy-2); outline-offset:1px;}
+
+  .toast{position:fixed; left:50%; bottom:calc(140px + env(safe-area-inset-bottom,0px)); transform:translateX(-50%); background:var(--ink); color:var(--paper); padding:9px 16px; border-radius:99px; font-size:13px; opacity:0; pointer-events:none; transition:opacity .25s ease; z-index:60;}
+  .toast.show{opacity:1;}
+
+  .done-card{text-align:center; padding:36px 20px;}
+  .done-card .big{font-size:38px; margin-bottom:6px;}
+  .score-pills{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin:16px 0;}
+  .score-pill{padding:8px 16px; border-radius:99px; font-size:13px; font-weight:700;}
+
+  footer.brandfoot{max-width:900px; margin:14px auto 0; padding:0 16px calc(110px + env(safe-area-inset-bottom,0px)); text-align:center; font-size:12px; color:var(--ink-soft);}
+
+  .mode-pill{font-family:inherit; font-size:12.5px; font-weight:700; color:var(--navy); background:var(--gold); border:none; border-radius:99px; padding:6px 14px; cursor:pointer; margin-top:12px; display:inline-flex; align-items:center; gap:6px;}
+  .mode-pick{display:flex; flex-direction:column; gap:14px; padding:8px 0 24px;}
+  .mode-card{background:var(--card); border:1.5px solid var(--rule); border-radius:16px; padding:22px; cursor:pointer; text-align:left;}
+  .mode-card:hover{border-color:var(--navy-2);}
+  .mode-card .mode-icon{font-size:26px; margin-bottom:8px;}
+  .mode-card h3{font-size:18px; margin-bottom:6px;}
+  .mode-card p{font-size:13.5px; color:var(--ink-soft); line-height:1.5; margin:0;}
+  .quiz-hint{font-size:12.5px; color:var(--ink-soft); background:var(--paper-2); border-radius:9px; padding:8px 12px; margin-bottom:14px;}
+  .review-row{border:1px solid var(--rule); border-radius:10px; padding:11px 13px; margin-bottom:10px;}
+  .review-tag{font-size:11.5px; font-weight:700; margin-bottom:4px; display:block;}
+  .review-tag.ok{color:var(--success);} .review-tag.bad{color:var(--danger);} .review-tag.na{color:var(--ink-soft);}
+  .review-q{font-size:13.5px; margin-bottom:6px; color:var(--ink-soft);}
+  .review-ans{font-size:13px; margin-bottom:2px;}
+
+  .who-row{max-width:900px; margin:12px auto 0; display:flex; flex-wrap:wrap; gap:8px; align-items:center;}
+  .who-row .mode-pill{margin-top:0;}
+  .who{display:inline-flex; flex-wrap:wrap; align-items:center; gap:6px; font-size:12.5px; color:#CFD7EA;}
+  .who b{color:#F4EFDF;}
+  .who button{font-family:inherit; font-size:12px; font-weight:700; color:#F4EFDF; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.22); border-radius:99px; padding:5px 11px; cursor:pointer;}
+  .who button:hover{background:rgba(255,255,255,.2);}
+  .login-card{max-width:460px; margin:8px auto 0; background:var(--card); border:1px solid var(--rule); border-radius:16px; padding:22px;}
+  .login-card h2{font-size:21px; margin-bottom:4px;}
+  .login-card p.lead{font-size:13.5px; color:var(--ink-soft); margin:0 0 16px; line-height:1.5;}
+  .fld{display:flex; flex-direction:column; gap:5px; margin-bottom:12px;}
+  .fld label{font-size:12px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft);}
+  .fld input{font-family:inherit; font-size:15px; padding:10px 12px; border:1.5px solid var(--rule); border-radius:9px; background:var(--paper); color:var(--ink);}
+  .fld input:focus{outline:none; border-color:var(--focus); box-shadow:0 0 0 3px var(--gold-soft);}
+  .fld-row{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .login-err{font-size:13px; color:var(--danger); background:var(--danger-soft); border-radius:8px; padding:8px 10px; margin-bottom:12px;}
+  .login-note{font-size:12px; color:var(--ink-soft); margin-top:12px; line-height:1.5;}
+  .known{margin:0 0 16px; display:flex; flex-direction:column; gap:6px;}
+  .known-label{font-size:12px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft);}
+  .known-btn{display:flex; justify-content:space-between; align-items:center; gap:10px; text-align:left; font-family:inherit; font-size:14.5px; padding:10px 12px; border:1.5px solid var(--rule); border-radius:10px; background:var(--paper); color:var(--ink); cursor:pointer;}
+  .known-btn:hover{border-color:var(--navy-2);}
+  .known-btn small{font-size:12px; color:var(--ink-soft);}
+  .rec-card{background:var(--card); border:1px solid var(--rule); border-radius:14px; padding:18px; margin-bottom:14px;}
+  .rec-card h2{font-size:19px; margin-bottom:10px;}
+  .rec-card h3{font-size:15px; margin:4px 0 8px;}
+  .rec-table-wrap{overflow-x:auto;}
+  .rec-table{width:100%; border-collapse:collapse; font-size:13.5px; font-variant-numeric:tabular-nums;}
+  .rec-table th{text-align:left; font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-soft); padding:6px 8px; border-bottom:1px solid var(--rule); white-space:nowrap;}
+  .rec-table td{padding:8px; border-bottom:1px solid var(--rule); white-space:nowrap;}
+  .rec-bar{display:inline-block; width:70px; height:6px; border-radius:99px; background:var(--rule); overflow:hidden; vertical-align:middle; margin-right:6px;}
+  .rec-bar i{display:block; height:100%; background:var(--success);}
+  .rec-empty{font-size:13.5px; color:var(--ink-soft);}
+  .sec-sub{max-width:900px; margin:0 auto; padding:10px 16px 0; font-size:12.5px; font-weight:700; color:var(--accent-text); letter-spacing:.02em;}
+  .opt{flex-wrap:wrap;}
+  .opt-l{font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; color:var(--ink-soft);}
+  .opt-t{flex:1; min-width:0;}
+  .opt.is-chosen:not(.is-correct):not(.is-wrong){border-color:var(--navy-2); background:var(--gold-soft);}
+  .opt-tag{font-size:11px; font-weight:700; padding:2px 8px; border-radius:99px; background:var(--card); border:1px solid currentColor; white-space:nowrap;}
+  .opt.is-correct .opt-tag{color:var(--success);} .opt.is-wrong .opt-tag{color:var(--danger);} .opt.is-chosen:not(.is-correct):not(.is-wrong) .opt-tag{color:var(--accent-text);}
+  .chosen{font-size:13.5px; margin-top:10px; padding:8px 12px; border-radius:9px;}
+  .chosen.ok{background:var(--success-soft); color:var(--success);} .chosen.bad{background:var(--danger-soft); color:var(--danger);}
+  .chosen + .chosen{margin-top:6px;}
+  .solution{margin-top:14px; border:1px solid var(--rule); border-left:4px solid var(--gold); background:var(--paper-2); border-radius:10px; padding:12px 14px;}
+  .sol-h{font-family:'Fraunces',Georgia,serif; font-weight:700; font-size:14px; color:var(--accent-text); margin-bottom:6px;}
+  .sol-line{font-size:14.5px; line-height:1.7;}
+  .rev-sol summary{cursor:pointer; font-size:12.5px; font-weight:700; color:var(--accent-text); margin-top:6px;}
+  .rev-sol .solution{margin-top:8px;}
+  .chapter-credit{max-width:900px; margin:4px auto 0; font-size:12px; color:#CFD7EA;}
+  footer.brandfoot a{color:inherit;}
+  .blank-input.expr{width:170px; max-width:100%;}
+  /*fix-layout*/ .cp-fill,.sp-fill{width:0;} .fld{min-width:0;} .fld input{width:100%; min-width:0; box-sizing:border-box;}
+  @media (prefers-reduced-motion:reduce){ *{transition:none !important;} }
 </style>
 </head>
 <body>
-<header><div class="in">
-  <div class="row"><div class="crest">BM</div><div><div class="bn">Brain &amp; Mind Academy</div><h1>Sopaan Practice Series</h1></div></div>
-  <p class="lead">Step-by-step practice sheets. Sign in once with your name, roll no. and PIN, and your progress is saved on this device for every sheet.</p>
-</div></header>
-<main>
-  <h2>Mathematics</h2>
-  <div class="grid">
-    <a class="card" href="sheets/multi-variable.html"><div class="eb">Algebra Foundations · Topic 1</div><div class="t">Equations with More Than One Variable</div><div class="d">Solve for a chosen letter: 26 problems (worked examples, practice and assignment) from Paul Dawkins' Online Math Notes, with step-by-step solutions.</div><span class="go">Open sheet →</span></a>
+<header class="brand">
+  <div class="brand-row">
+    <div class="crest">BM</div>
+    <div>
+      <div class="brand-name">Brain &amp; Mind Academy</div>
+      <div class="series-name">Sopaan <span style="font-weight:400;font-size:14px;color:#CFD7EA;">Practice Series</span></div>
+    </div>
   </div>
-</main>
-<footer>Brain &amp; Mind Academy · Sopaan Practice Series</footer>
+  <div class="chapter-eyebrow">Algebra Foundations · Topic 1</div>
+  <div class="chapter-title">Equations with More Than One Variable</div>
+  <div class="chapter-sub">Rearranging Formulas · Step-by-Step Practice Sheet</div><div class="chapter-credit">Problems: Paul Dawkins, Online Math Notes, Lamar University</div>
+  <div class="chapter-progress">
+    <div class="cp-track"><div class="cp-fill" id="cpFill"></div></div>
+    <div class="cp-label" id="cpLabel">0% complete</div>
+  </div>
+  <div class="who-row"><button class="mode-pill" id="modePill" hidden>Choose a mode</button><span class="who" id="whoBar" hidden></span></div>
+</header>
+
+<nav class="tabbar"><div class="tabbar-inner" id="tabbar"></div></nav>
+<div class="sec-sub" id="secSub"></div><div class="slide-progress"><div class="sp-track"><div class="sp-fill" id="spFill"></div></div><div class="sp-label" id="spLabel">Question 1 of 49</div></div>
+<div class="wrap" id="wrap"></div>
+<footer class="brandfoot">Brain &amp; Mind Academy · Sopaan Practice Series · Equations with More Than One Variable<br>Problems © Paul Dawkins, <a href="https://tutorial.math.lamar.edu/Classes/Alg/SolveMultiVariable.aspx" target="_blank" rel="noopener">Paul's Online Math Notes</a>, Lamar University. Used for non-commercial practice; step breakdowns and solutions by Brain &amp; Mind Academy.</footer>
+
+<div class="navbar"><div class="navbar-inner" id="navbarInner"></div></div>
+<button class="fab" id="paletteFab"><span>Questions</span><span class="fab-badge" id="fabBadge">0/49</span></button>
+
+<div class="overlay" id="overlay">
+  <div class="palette" role="dialog" aria-label="Question palette">
+    <div class="palette-head"><h2 id="paletteTitle">Question palette</h2><button class="palette-close" id="paletteClose">&times;</button></div>
+    <div class="palette-legend">
+      <span><i class="dot current"></i>Current</span><span><i class="dot correct"></i>Correct</span>
+      <span><i class="dot revealed"></i>Revealed</span><span><i class="dot skipped"></i>Skipped</span>
+      <span><i class="dot locked"></i>Locked</span>
+    </div>
+    <div class="chip-grid" id="paletteBody"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ================= audio ================= */
+var audioCtx=null;
+function ensureAudio(){ if(!audioCtx){ try{ audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} } return audioCtx; }
+function playTone(freqs,dur,type){
+  var ctx=ensureAudio(); if(!ctx) return;
+  try{
+    var t0=ctx.currentTime;
+    freqs.forEach(function(f,i){
+      var o=ctx.createOscillator(), g=ctx.createGain();
+      o.type=type||'sine'; o.frequency.value=f;
+      var start=t0+i*dur;
+      g.gain.setValueAtTime(0.0001,start);
+      g.gain.exponentialRampToValueAtTime(0.16,start+0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001,start+dur);
+      o.connect(g); g.connect(ctx.destination);
+      o.start(start); o.stop(start+dur+0.02);
+    });
+  }catch(e){}
+}
+function playSuccess(){ playTone([523.25,659.25,783.99],0.11,'sine'); }
+function playWrong(){ playTone([220,185],0.14,'square'); }
+function playReveal(){ playTone([300,220],0.16,'triangle'); }
+
+/* ================= helpers ================= */
+function norm(s){
+  return String(s===undefined||s===null?'':s).trim().toLowerCase().replace(/\s+/g,'')
+    .replace(/[×∗]/g,'x').replace(/–|—|−/g,'-')
+    .replace(/[²]/g,'^2').replace(/[³]/g,'^3').replace(/[⁴]/g,'^4').replace(/[⁵]/g,'^5')
+    .replace(/[⁶]/g,'^6').replace(/[⁷]/g,'^7').replace(/[⁸]/g,'^8').replace(/[⁹]/g,'^9')
+    .replace(/\^/g,'');
+}
+function parseNum(s){
+  if(s===undefined||s===null) return null;
+  var t=String(s).trim().replace(/,/g,'').replace(/[−–—]/g,'-').replace(/\s+/g,''); if(t==='') return null;
+  var neg=false; if(t[0]==='-'){neg=true;t=t.slice(1);}
+  var m=t.match(/^(\d+)\/(\d+)$/);
+  if(m){ var v=parseInt(m[1],10)/parseInt(m[2],10); return neg?-v:v; }
+  if(/^\d+(\.\d+)?$/.test(t)){ var v2=parseFloat(t); return neg?-v2:v2; }
+  return null;
+}
+/* ---- expression checker: compares answers like (P-2w)/2 and P/2-w at random values ---- */
+function exprPrep(s){
+  return String(s).replace(/\s+/g,'').replace(/[×∗·]/g,'*').replace(/÷/g,'/').replace(/[−–—]/g,'-')
+    .replace(/²/g,'^2').replace(/³/g,'^3').replace(/π/g,'#').replace(/pi/gi,'#').replace(/½/g,'(1/2)');
+}
+function exprCompile(src){
+  var s=exprPrep(src), i=0, toks=[];
+  while(i<s.length){
+    var ch=s[i];
+    if(/[0-9.]/.test(ch)){ var j=i; while(j<s.length && /[0-9.]/.test(s[j])) j++; toks.push({k:'n',v:parseFloat(s.slice(i,j))}); i=j; continue; }
+    if(/[a-zA-Z#]/.test(ch)){ toks.push({k:'v',v:ch}); i++; continue; }
+    if('+-*/^()'.indexOf(ch)>=0){ toks.push({k:ch}); i++; continue; }
+    return null;
+  }
+  var out=[];
+  for(var t=0;t<toks.length;t++){
+    var a=toks[t], b=out[out.length-1];
+    if(b && (b.k==='n'||b.k==='v'||b.k===')') && (a.k==='n'||a.k==='v'||a.k==='(')) out.push({k:'&'});
+    out.push(a);
+  }
+  var p=0;
+  function peek(){ return out[p]; }
+  function parseE(){ var n=parseT(); while(peek() && (peek().k==='+'||peek().k==='-')){ var o=out[p++].k, r=parseT(); n=(function(l,r,o){return function(e){ return o==='+'?l(e)+r(e):l(e)-r(e); };})(n,r,o); } return n; }
+  function parseI(){ var n=parseU(); while(peek() && peek().k==='&'){ p++; var r=parseP(); n=(function(l,r){return function(e){ return l(e)*r(e); };})(n,r); } return n; }
+  function parseT(){ var n=parseI(); while(peek() && (peek().k==='*'||peek().k==='/')){ var o=out[p++].k, r=parseI(); n=(function(l,r,o){return function(e){ return o==='*'?l(e)*r(e):l(e)/r(e); };})(n,r,o); } return n; }
+  function parseU(){ if(peek() && peek().k==='-'){ p++; var u=parseU(); return function(e){ return -u(e); }; } if(peek() && peek().k==='+'){ p++; return parseU(); } return parseP(); }
+  function parseP(){ var b=parseA(); if(peek() && peek().k==='^'){ p++; var x=parseU(); return function(e){ return Math.pow(b(e),x(e)); }; } return b; }
+  function parseA(){
+    var t=out[p++]; if(!t) throw 0;
+    if(t.k==='n') return function(){ return t.v; };
+    if(t.k==='v') return t.v==='#' ? function(){ return Math.PI; } : function(e){ return e[t.v]; };
+    if(t.k==='('){ var n=parseE(); if(!peek()||peek().k!==')') throw 0; p++; return n; }
+    throw 0;
+  }
+  try{ var f=parseE(); if(p!==out.length) return null; return f; }catch(e){ return null; }
+}
+function exprEqual(input,answer){
+  var f=exprCompile(input), g=exprCompile(answer); if(!f||!g) return false;
+  var hits=0;
+  for(var trial=0;trial<8;trial++){
+    var env={}; 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach(function(c){ env[c]=1.3+Math.random()*4.1; });
+    var x=f(env), y=g(env);
+    if(!isFinite(x)||!isFinite(y)) continue;
+    if(Math.abs(x-y)>1e-7*Math.max(1,Math.abs(x),Math.abs(y))) return false;
+    hits++;
+  }
+  return hits>=3;
+}
+function answerMatches(input,answer,accept,expr){
+  if(expr && input!==undefined && input!==null && String(input).trim()!==''){
+    if(exprEqual(input,answer)) return true;
+    return (accept||[]).some(function(a){ return exprEqual(input,a); });
+  }
+  if(input===undefined||input===null||String(input).trim()==='') return false;
+  var n1=parseNum(input), n2=parseNum(answer);
+  if(n1!==null && n2!==null) return Math.abs(n1-n2)<1e-3;
+  var cands=[answer].concat(accept||[]); var ni=norm(input);
+  for(var i=0;i<cands.length;i++){ if(norm(cands[i])===ni) return true; }
+  return false;
+}
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+/* ================= DATA ================= */
+var MCQ = [];
+var AR_OPTIONS = ["Both A and R are true, and R is the correct explanation of A","Both A and R are true, but R is NOT the correct explanation of A","A is true but R is false","A is false but R is true"];
+var AR = [];
+var TWO_MARKS = [
+{
+"p": "Solve A = P(1 + rt) for r.",
+"steps": [
+{
+"t": "Expand the right side: A = P + __B1__",
+"a": {
+"B1": "Prt"
+},
+"expr": true
+},
+{
+"t": "Subtract P from both sides: __B1__ = Prt",
+"a": {
+"B1": "A-P"
+},
+"expr": true
+},
+{
+"t": "Divide both sides by Pt: r = __B1__",
+"a": {
+"B1": "(A-P)/(Pt)"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve V = m(1/b − 5aR/m) for R.",
+"steps": [
+{
+"t": "Expand the right side: V = m/b − __B1__",
+"a": {
+"B1": "5aR"
+},
+"expr": true
+},
+{
+"t": "Move terms so R is alone on one side: 5aR = __B1__",
+"a": {
+"B1": "m/b-V"
+},
+"expr": true
+},
+{
+"t": "Divide by 5a: R = __B1__ (any equivalent form)",
+"a": {
+"B1": "(m-Vb)/(5ab)"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve V = m(1/b − 5aR/m) for b.",
+"steps": [
+{
+"t": "Expand the right side: V = m/b − __B1__",
+"a": {
+"B1": "5aR"
+},
+"expr": true
+},
+{
+"t": "Add 5aR to both sides: __B1__ = m/b",
+"a": {
+"B1": "V+5aR"
+},
+"expr": true
+},
+{
+"t": "Take reciprocals and multiply by m: b = __B1__",
+"a": {
+"B1": "m/(V+5aR)"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve 1/a = 1/b + 1/c for c.",
+"steps": [
+{
+"t": "Isolate the c term: 1/c = __B1__",
+"a": {
+"B1": "1/a-1/b"
+},
+"expr": true
+},
+{
+"t": "Write it as one fraction: 1/c = (b − a)/__B1__",
+"a": {
+"B1": "ab"
+},
+"expr": true
+},
+{
+"t": "Take reciprocals: c = __B1__",
+"a": {
+"B1": "ab/(b-a)"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve y = 4/(5x − 9) for x.",
+"steps": [
+{
+"t": "Multiply both sides by (5x − 9): 5xy − __B1__ = 4",
+"a": {
+"B1": "9y"
+},
+"expr": true
+},
+{
+"t": "Add 9y to both sides: 5xy = __B1__",
+"a": {
+"B1": "4+9y"
+},
+"expr": true
+},
+{
+"t": "Divide by 5y: x = __B1__",
+"a": {
+"B1": "(9y+4)/(5y)"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve y = (4 − 3x)/(1 + 8x) for x.",
+"steps": [
+{
+"t": "Multiply both sides by (1 + 8x): y + __B1__ = 4 − 3x",
+"a": {
+"B1": "8xy"
+},
+"expr": true
+},
+{
+"t": "Collect x-terms on the left: 8xy + 3x = __B1__",
+"a": {
+"B1": "4-y"
+},
+"expr": true
+},
+{
+"t": "Factor out x: x(__B1__) = 4 − y",
+"a": {
+"B1": "8y+3"
+},
+"expr": true
+},
+{
+"t": "x = __B1__",
+"a": {
+"B1": "(4-y)/(8y+3)"
+},
+"expr": true
+}
+]
+}
+];
+var THREE_MARKS = [
+{
+"p": "Solve E = 3v(4 − 2/r) for r.",
+"steps": [
+{
+"t": "Expand the right side: E = 12v − __B1__",
+"a": {
+"B1": "6v/r"
+},
+"expr": true
+},
+{
+"t": "Move terms so the r term is alone: 6v/r = __B1__",
+"a": {
+"B1": "12v-E"
+},
+"expr": true
+},
+{
+"t": "Solve for r: r = __B1__",
+"a": {
+"B1": "6v/(12v-E)"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve Q = 6h/(7s) + 4(1 − h) for s.",
+"steps": [
+{
+"t": "Isolate the s term: 6h/(7s) = __B1__",
+"a": {
+"B1": "Q-4+4h"
+},
+"expr": true
+},
+{
+"t": "Multiply both sides by 7s: 6h = 7s(__B1__)",
+"a": {
+"B1": "Q-4+4h"
+},
+"expr": true
+},
+{
+"t": "s = __B1__",
+"a": {
+"B1": "6h/(7Q-28+28h)"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve Q = 6h/(7s) + 4(1 − h) for h.",
+"steps": [
+{
+"t": "Multiply every term by 7s: 7sQ = 6h + __B1__",
+"a": {
+"B1": "28s(1-h)"
+},
+"expr": true
+},
+{
+"t": "Expand and collect h-terms: 7sQ − 28s = __B1__",
+"a": {
+"B1": "6h-28sh"
+},
+"expr": true
+},
+{
+"t": "Factor out h: h(__B1__) = 7sQ − 28s",
+"a": {
+"B1": "6-28s"
+},
+"expr": true
+},
+{
+"t": "h = __B1__",
+"a": {
+"B1": "(7sQ-28s)/(6-28s)"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve A − (1 − 2t)/(4p) = (4 + 3t)/(5p) for t.",
+"steps": [
+{
+"t": "Multiply every term by the LCD __B1__",
+"a": {
+"B1": "20p"
+},
+"expr": true
+},
+{
+"t": "This gives 20pA − 5(1 − 2t) = __B1__",
+"a": {
+"B1": "4(4+3t)"
+},
+"expr": true
+},
+{
+"t": "Expand and simplify: 20pA − 21 = __B1__",
+"a": {
+"B1": "2t"
+},
+"expr": true
+},
+{
+"t": "t = __B1__",
+"a": {
+"B1": "(20pA-21)/2"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve y = 10/(3 − 7x) for x.",
+"steps": [
+{
+"t": "Multiply both sides by (3 − 7x): 3y − __B1__ = 10",
+"a": {
+"B1": "7xy"
+},
+"expr": true
+},
+{
+"t": "Move terms: 7xy = __B1__",
+"a": {
+"B1": "3y-10"
+},
+"expr": true
+},
+{
+"t": "x = __B1__",
+"a": {
+"B1": "(3y-10)/(7y)"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve y = (3 + x)/(12 − 9x) for x.",
+"steps": [
+{
+"t": "Multiply both sides by (12 − 9x): 12y − __B1__ = 3 + x",
+"a": {
+"B1": "9xy"
+},
+"expr": true
+},
+{
+"t": "Collect x-terms on the right: 12y − 3 = x + __B1__",
+"a": {
+"B1": "9xy"
+},
+"expr": true
+},
+{
+"t": "Factor out x: 12y − 3 = x(__B1__)",
+"a": {
+"B1": "1+9y"
+},
+"expr": true
+},
+{
+"t": "x = __B1__",
+"a": {
+"B1": "(12y-3)/(1+9y)"
+},
+"expr": true
+}
+]
+}
+];
+var FIVE_MARKS = [
+{
+"p": "Solve A = 3p(4 − 2r) for p.",
+"steps": [
+{
+"t": "p is multiplied by 3(4 − 2r), so divide both sides by __B1__",
+"a": {
+"B1": "3(4-2r)"
+},
+"expr": true
+},
+{
+"t": "p = __B1__",
+"a": {
+"B1": "A/(12-6r)"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve A = 3p(4 − 2r) for r.",
+"steps": [
+{
+"t": "Expand: A = 12p − __B1__",
+"a": {
+"B1": "6pr"
+},
+"expr": true
+},
+{
+"t": "Move terms: 6pr = __B1__",
+"a": {
+"B1": "12p-A"
+},
+"expr": true
+},
+{
+"t": "r = __B1__",
+"a": {
+"B1": "(12p-A)/(6p)"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve T = (c/3)(6p + 3q/c) − 7p for p.",
+"steps": [
+{
+"t": "Expand: T = 2cp + __B1__ − 7p",
+"a": {
+"B1": "q"
+},
+"expr": true
+},
+{
+"t": "Move q across and factor out p: T − q = p(__B1__)",
+"a": {
+"B1": "2c-7"
+},
+"expr": true
+},
+{
+"t": "p = __B1__",
+"a": {
+"B1": "(T-q)/(2c-7)"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve T = (c/3)(6p + 3q/c) − 7p for c.",
+"steps": [
+{
+"t": "Expand: T = __B1__ + q − 7p",
+"a": {
+"B1": "2cp"
+},
+"expr": true
+},
+{
+"t": "Isolate the c term: 2cp = __B1__",
+"a": {
+"B1": "T-q+7p"
+},
+"expr": true
+},
+{
+"t": "c = __B1__",
+"a": {
+"B1": "(T-q+7p)/(2p)"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve 1/n = 2/m − 3/q for n.",
+"steps": [
+{
+"t": "Write the right side as one fraction: 1/n = (__B1__)/(mq)",
+"a": {
+"B1": "2q-3m"
+},
+"expr": true
+},
+{
+"t": "Take reciprocals: n = __B1__",
+"a": {
+"B1": "mq/(2q-3m)"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve 1/n = 2/m − 3/q for q.",
+"steps": [
+{
+"t": "Isolate the q term: 3/q = __B1__",
+"a": {
+"B1": "2/m-1/n"
+},
+"expr": true
+},
+{
+"t": "Write it as one fraction: 3/q = (2n − m)/__B1__",
+"a": {
+"B1": "mn"
+},
+"expr": true
+},
+{
+"t": "q = __B1__",
+"a": {
+"B1": "3mn/(2n-m)"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve 3A + 6C = 4A(B − 7C) for C.",
+"steps": [
+{
+"t": "Expand the right side: 3A + 6C = 4AB − __B1__",
+"a": {
+"B1": "28AC"
+},
+"expr": true
+},
+{
+"t": "Collect C-terms on the left: 6C + 28AC = __B1__",
+"a": {
+"B1": "4AB-3A"
+},
+"expr": true
+},
+{
+"t": "Factor out C: C(__B1__) = 4AB − 3A",
+"a": {
+"B1": "6+28A"
+},
+"expr": true
+},
+{
+"t": "C = __B1__",
+"a": {
+"B1": "(4AB-3A)/(6+28A)"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve 3A + 6C = 4A(B − 7C) for A.",
+"steps": [
+{
+"t": "Expand the right side: 3A + 6C = __B1__ − 28AC",
+"a": {
+"B1": "4AB"
+},
+"expr": true
+},
+{
+"t": "Collect A-terms on the left: 3A − 4AB + 28AC = __B1__",
+"a": {
+"B1": "-6C"
+},
+"expr": true
+},
+{
+"t": "Factor out A: A(__B1__) = −6C",
+"a": {
+"B1": "3-4B+28C"
+},
+"expr": true
+},
+{
+"t": "A = __B1__",
+"a": {
+"B1": "6C/(4B-28C-3)"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve y = (4 − 9x)/3 for x.",
+"steps": [
+{
+"t": "Multiply both sides by 3: 3y = __B1__",
+"a": {
+"B1": "4-9x"
+},
+"expr": true
+},
+{
+"t": "x = __B1__",
+"a": {
+"B1": "(4-3y)/9"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve y = 12/(1 − x) for x.",
+"steps": [
+{
+"t": "Multiply both sides by (1 − x): y − __B1__ = 12",
+"a": {
+"B1": "xy"
+},
+"expr": true
+},
+{
+"t": "x = __B1__",
+"a": {
+"B1": "(y-12)/y"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve y = 7/(10x + 9) for x.",
+"steps": [
+{
+"t": "Multiply both sides by (10x + 9): 10xy + __B1__ = 7",
+"a": {
+"B1": "9y"
+},
+"expr": true
+},
+{
+"t": "x = __B1__",
+"a": {
+"B1": "(7-9y)/(10y)"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve y = (8 − 5x)/(9 − 7x) for x.",
+"steps": [
+{
+"t": "Multiply both sides by (9 − 7x): 9y − __B1__ = 8 − 5x",
+"a": {
+"B1": "7xy"
+},
+"expr": true
+},
+{
+"t": "Collect x-terms on the left: 5x − 7xy = __B1__",
+"a": {
+"B1": "8-9y"
+},
+"expr": true
+},
+{
+"t": "Factor out x: x(__B1__) = 8 − 9y",
+"a": {
+"B1": "5-7y"
+},
+"expr": true
+},
+{
+"t": "x = __B1__",
+"a": {
+"B1": "(8-9y)/(5-7y)"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve y = (2 + 11x)/(1 + 4x) for x.",
+"steps": [
+{
+"t": "Multiply both sides by (1 + 4x): y + __B1__ = 2 + 11x",
+"a": {
+"B1": "4xy"
+},
+"expr": true
+},
+{
+"t": "Collect x-terms on the left: 4xy − 11x = __B1__",
+"a": {
+"B1": "2-y"
+},
+"expr": true
+},
+{
+"t": "Factor out x: x(__B1__) = 2 − y",
+"a": {
+"B1": "4y-11"
+},
+"expr": true
+},
+{
+"t": "x = __B1__",
+"a": {
+"B1": "(2-y)/(4y-11)"
+},
+"expr": true
+}
+]
+},
+{
+"p": "Solve y = (9 + 2x)/(4 − x) for x.",
+"steps": [
+{
+"t": "Multiply both sides by (4 − x): 4y − __B1__ = 9 + 2x",
+"a": {
+"B1": "xy"
+},
+"expr": true
+},
+{
+"t": "Collect x-terms on the right: 4y − 9 = 2x + __B1__",
+"a": {
+"B1": "xy"
+},
+"expr": true
+},
+{
+"t": "Factor out x: 4y − 9 = x(__B1__)",
+"a": {
+"B1": "2+y"
+},
+"expr": true
+},
+{
+"t": "x = __B1__",
+"a": {
+"B1": "(4y-9)/(y+2)"
+},
+"expr": true
+}
+]
+}
+];
+var CASES = [];
+var SOLUTIONS = {"mcq": [], "ar": [], "tm2": ["A = P(1 + rt) = P + Prt\nA − P = Prt\nr = (A − P)/(Pt)", "Expand: V = m/b − 5aR\nAdd 5aR and subtract V: 5aR = m/b − V\nR = (m/b − V)/(5a) = (m − Vb)/(5ab)", "Expand: V = m/b − 5aR\nV + 5aR = m/b\nb(V + 5aR) = m, so b = m/(V + 5aR)", "1/c = 1/a − 1/b\n1/c = b/(ab) − a/(ab) = (b − a)/(ab)\nc = ab/(b − a)", "y(5x − 9) = 4, so 5xy − 9y = 4\n5xy = 9y + 4\nx = (9y + 4)/(5y)", "y(1 + 8x) = 4 − 3x, so y + 8xy = 4 − 3x\n8xy + 3x = 4 − y\nx(8y + 3) = 4 − y\nx = (4 − y)/(8y + 3)"], "tm3": ["E = 12v − 6v/r\n6v/r = 12v − E\n6v = r(12v − E), so r = 6v/(12v − E)", "Q − 4(1 − h) = 6h/(7s), so 6h/(7s) = Q − 4 + 4h\n6h = 7s(Q − 4 + 4h)\ns = 6h/(7(Q − 4 + 4h)) = 6h/(7Q − 28 + 28h)", "Multiply by 7s: 7sQ = 6h + 28s(1 − h) = 6h + 28s − 28sh\n7sQ − 28s = 6h − 28sh\n7sQ − 28s = h(6 − 28s)\nh = (7sQ − 28s)/(6 − 28s)", "Multiply every term by 20p: 20pA − 5(1 − 2t) = 4(4 + 3t)\n20pA − 5 + 10t = 16 + 12t\n20pA − 21 = 2t\nt = (20pA − 21)/2 = 10pA − 21/2", "y(3 − 7x) = 10, so 3y − 7xy = 10\n7xy = 3y − 10\nx = (3y − 10)/(7y)", "y(12 − 9x) = 3 + x, so 12y − 9xy = 3 + x\n12y − 3 = x + 9xy\n12y − 3 = x(1 + 9y)\nx = (12y − 3)/(1 + 9y)"], "tm5": ["A = 3p(4 − 2r)\np = A/(3(4 − 2r)) = A/(12 − 6r)", "A = 12p − 6pr\n6pr = 12p − A\nr = (12p − A)/(6p)", "(c/3)(6p) = 2cp and (c/3)(3q/c) = q, so T = 2cp + q − 7p\nT − q = 2cp − 7p = p(2c − 7)\np = (T − q)/(2c − 7)", "T = 2cp + q − 7p\n2cp = T − q + 7p\nc = (T − q + 7p)/(2p)", "2/m − 3/q = 2q/(mq) − 3m/(mq) = (2q − 3m)/(mq)\nSo 1/n = (2q − 3m)/(mq)\nn = mq/(2q − 3m)", "3/q = 2/m − 1/n = (2n − m)/(mn)\nTake reciprocals: q/3 = mn/(2n − m)\nq = 3mn/(2n − m)", "3A + 6C = 4AB − 28AC\n6C + 28AC = 4AB − 3A\nC(6 + 28A) = 4AB − 3A\nC = (4AB − 3A)/(6 + 28A)", "3A + 6C = 4AB − 28AC\n3A − 4AB + 28AC = −6C\nA(3 − 4B + 28C) = −6C\nA = −6C/(3 − 4B + 28C) = 6C/(4B − 28C − 3)", "3y = 4 − 9x\n9x = 4 − 3y\nx = (4 − 3y)/9", "y(1 − x) = 12, so y − xy = 12\nxy = y − 12\nx = (y − 12)/y", "y(10x + 9) = 7, so 10xy + 9y = 7\n10xy = 7 − 9y\nx = (7 − 9y)/(10y)", "y(9 − 7x) = 8 − 5x, so 9y − 7xy = 8 − 5x\n5x − 7xy = 8 − 9y\nx(5 − 7y) = 8 − 9y\nx = (8 − 9y)/(5 − 7y)", "y(1 + 4x) = 2 + 11x, so y + 4xy = 2 + 11x\n4xy − 11x = 2 − y\nx(4y − 11) = 2 − y\nx = (2 − y)/(4y − 11)", "y(4 − x) = 9 + 2x, so 4y − xy = 9 + 2x\n4y − 9 = 2x + xy\n4y − 9 = x(2 + y)\nx = (4y − 9)/(y + 2)"], "cs": []};
+/* ================= build slide lists ================= */
+function flattenCase(c){
+  var flat=[];
+  c.parts.forEach(function(part){
+    part.steps.forEach(function(s,si){
+      flat.push({t:s.t, a:s.a, accept:s.accept, expr:s.expr, partLabel: si===0?part.label:null, orDivider: si===0 && part.or});
+    });
+  });
+  return flat;
+}
+var SLIDES = {
+  mcq: MCQ.map(function(q,i){ return {kind:'mcq', text:q[0], opts:q[1], correct:q[2], tag:q[3], sol:SOLUTIONS.mcq[i]}; })
+        .concat(AR.map(function(q,i){ return {kind:'ar', a:q[0], r:q[1], correct:q[2], tag:q[3], sol:SOLUTIONS.ar[i]}; })),
+  tm2: TWO_MARKS.map(function(q,i){ return {kind:'blank', sol:SOLUTIONS.tm2[i], p:q.p, tag:q.tag, marks:'', flat:q.steps.map(function(s){return {t:s.t,a:s.a,accept:s.accept,expr:s.expr};}) }; }),
+  tm3: THREE_MARKS.map(function(q,i){ return {kind:'blank', sol:SOLUTIONS.tm3[i], p:q.p, tag:q.tag, marks:'', flat:q.steps.map(function(s){return {t:s.t,a:s.a,accept:s.accept,expr:s.expr};}) }; }),
+  tm5: FIVE_MARKS.map(function(q,i){ return {kind:'blank', sol:SOLUTIONS.tm5[i], p:q.p, tag:q.tag, marks:'', flat:q.steps.map(function(s){return {t:s.t,a:s.a,accept:s.accept,expr:s.expr};}) }; }),
+  cs: CASES.map(function(c,i){ return {kind:'case', sol:SOLUTIONS.cs[i], title:c.title, body:c.body, tag:c.tag, flat:flattenCase(c)}; })
+};
+var TAB_DEFS = [
+  {id:'mcq', sub:'Multiple choice · 1 mark each'},
+  {id:'tm2', sub:'Worked examples · 6 problems'},
+  {id:'tm3', sub:'Practice problems · 6 problems'},
+  {id:'tm5', sub:'Assignment problems · 14 problems'},
+  {id:'cs',  sub:'Case study · 4 marks each'}
+].filter(function(t){ return SLIDES[t.id] && SLIDES[t.id].length; });
+TAB_DEFS.forEach(function(t,i){ t.label='Section '+String.fromCharCode(65+i); });
+
+/* ================= state ================= */
+function blankItem(slide){
+  if(slide.kind==='mcq'||slide.kind==='ar'){
+    return {status:'unanswered', attempts:0, choice:undefined};
+  }
+  return {status:'unanswered', curStep:0, stepStates: slide.flat.map(function(){ return {status:'unanswered', attempts:0, inputs:{}}; })};
+}
+function defaultState(){
+  var s={tabs:{}};
+  TAB_DEFS.forEach(function(td){
+    s.tabs[td.id] = { idx:0, maxReached:0, items: SLIDES[td.id].map(function(sl){ return blankItem(sl); }) };
+  });
+  return s;
+}
+var appState = {mode:null, learning:null, quiz:null};
+var state = null;      // alias for appState[appState.mode]
+var MODE = null;
+var activeTab=TAB_DEFS[0].id;
+
+function setMode(m){
+  appState.mode = m;
+  if(!appState[m]) appState[m] = defaultState();
+  state = appState[m];
+  MODE = m;
+}
+/* ================= student accounts (saved on this device) ================= */
+var SHEET_KEY='sopaan-alg-multi-variable';
+var ACC_KEY='sopaan-students-v1';
+var storageOK=true;
+var MEM={};
+function lsGet(k){ var r=null; try{ r=localStorage.getItem(k); }catch(e){ storageOK=false; }
+  if(r===null||r===undefined) r=MEM[k]||null; try{ return r?JSON.parse(r):null; }catch(e){ return null; } }
+function lsSet(k,v){ var j=JSON.stringify(v); MEM[k]=j; try{ localStorage.setItem(k,j); return true; }catch(e){ storageOK=false; return false; } }
+try{ localStorage.setItem('sopaan-probe','1'); localStorage.removeItem('sopaan-probe'); }catch(e){ storageOK=false; }
+function hashPin(pin,salt){ var h=2166136261, str=salt+'|'+pin; for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619)>>>0; } return h.toString(36); }
+function accKey(name,roll){ return (name.trim().toLowerCase().replace(/\s+/g,' ')+'#'+roll.trim().toLowerCase()); }
+function accounts(){ return lsGet(ACC_KEY)||{students:{}}; }
+var student=null; // {key,name,roll}
+var records=[];   // finished-tab history for this student on this sheet
+function progKey(){ return SHEET_KEY+'::'+student.key; }
+
+function loadState(){
+  appState = {mode:null, learning:null, quiz:null}; records=[]; activeTab=TAB_DEFS[0].id;
+  var saved=lsGet(progKey());
+  if(!saved) return;
+  try{
+    ['learning','quiz'].forEach(function(m){
+      if(saved[m] && saved[m].tabs){
+        var fresh = defaultState();
+        TAB_DEFS.forEach(function(td){
+          if(saved[m].tabs[td.id] && saved[m].tabs[td.id].items && saved[m].tabs[td.id].items.length===SLIDES[td.id].length){
+            fresh.tabs[td.id] = saved[m].tabs[td.id];
+          }
+        });
+        appState[m] = fresh;
+      }
+    });
+    if(saved.mode==='learning' || saved.mode==='quiz') appState.mode = saved.mode;
+    if(saved.activeTab && TAB_DEFS.some(function(t){ return t.id===saved.activeTab; })) activeTab = saved.activeTab;
+    if(Array.isArray(saved.records)) records = saved.records;
+  }catch(e){}
+}
+function saveState(){
+  if(!student) return;
+  lsSet(progKey(), {mode:appState.mode, learning:appState.learning, quiz:appState.quiz, activeTab:activeTab, records:records, updated:Date.now()});
+  var acc=accounts(); if(acc.students[student.key]){ acc.students[student.key].last=Date.now(); lsSet(ACC_KEY,acc); }
+}
+function addRecord(mode, tabId, correct, revealed, skipped, total){
+  records.unshift({at:Date.now(), mode:mode, tab:tabId, correct:correct, revealed:revealed, skipped:skipped, total:total});
+  if(records.length>60) records.length=60;
+  saveState();
+}
+function fmtDate(ms){ try{ return new Date(ms).toLocaleString(undefined,{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}); }catch(e){ return ''; } }
+
+function renderWho(){
+  var el=document.getElementById('whoBar');
+  if(!student){ el.hidden=true; el.innerHTML=''; return; }
+  el.hidden=false;
+  el.innerHTML='Signed in as <b>'+esc(student.name)+'</b> · Roll '+esc(student.roll)+
+    ' <button id="btnRecord">My record</button> <button id="btnSignOut">Sign out</button>';
+  document.getElementById('btnRecord').addEventListener('click', renderRecord);
+  document.getElementById('btnSignOut').addEventListener('click', signOut);
+}
+function signOut(){
+  saveState(); student=null; state=null; MODE=null;
+  var acc=accounts(); delete acc.current; lsSet(ACC_KEY,acc);
+  document.getElementById('modePill').hidden=true;
+  renderWho(); renderLogin();
+}
+function signIn(key){
+  var acc=accounts(); var st=acc.students[key]; if(!st) return;
+  student={key:key, name:st.name, roll:st.roll};
+  acc.current=key; st.last=Date.now(); lsSet(ACC_KEY,acc);
+  loadState(); renderWho();
+  if(appState.mode==='learning' || appState.mode==='quiz'){
+    setMode(appState.mode); document.getElementById('modePill').hidden=false; updateModePill();
+    showChrome(true); buildTabbar(); renderSlide();
+    showToast('Welcome back, '+st.name.split(' ')[0]+'. Picking up where you left off.');
+  } else {
+    renderModePicker();
+  }
+}
+function renderLogin(msg){
+  showChrome(false);
+  var acc=accounts(); var keys=Object.keys(acc.students).sort(function(a,b){ return (acc.students[b].last||0)-(acc.students[a].last||0); });
+  var h='<div class="login-card"><h2>Student sign-in</h2>'+
+    '<p class="lead">Sign in to save your answers, see your record and continue where you left off next time.</p>';
+  if(!storageOK) h+='<div class="login-err">This browser is blocking saved data (for example, a private window). You can still practise, but progress will not be kept after you close the page.</div>';
+  if(msg) h+='<div class="login-err">'+esc(msg)+'</div>';
+  if(keys.length){
+    h+='<div class="known"><span class="known-label">Continue as</span>';
+    keys.slice(0,6).forEach(function(k){ var st=acc.students[k];
+      h+='<button class="known-btn" data-k="'+esc(k)+'"><span>'+esc(st.name)+' <small>· Roll '+esc(st.roll)+'</small></span><small>'+(st.last?'Last active '+fmtDate(st.last):'')+'</small></button>'; });
+    h+='</div>';
+  }
+  h+='<form id="loginForm" novalidate>'+
+    '<div class="fld"><label for="lgName">Full name</label><input id="lgName" autocomplete="name" required></div>'+
+    '<div class="fld-row"><div class="fld"><label for="lgRoll">Roll no.</label><input id="lgRoll" required></div>'+
+    '<div class="fld"><label for="lgPin">4-digit PIN</label><input id="lgPin" type="password" inputmode="numeric" maxlength="4" autocomplete="off" required></div></div>'+
+    '<button class="btn btn-primary" type="submit" style="width:100%;">Sign in</button>'+
+    '<p class="login-note">New here? Enter your name, roll no. and a PIN you will remember, and your profile is created. Progress is saved on this device, so use the same device and browser to continue.</p>'+
+    '</form></div>';
+  var wrap=document.getElementById('wrap'); wrap.innerHTML=h;
+  wrap.querySelectorAll('.known-btn').forEach(function(b){
+    b.addEventListener('click', function(){
+      var st=accounts().students[b.dataset.k];
+      document.getElementById('lgName').value=st.name; document.getElementById('lgRoll').value=st.roll;
+      document.getElementById('lgPin').focus();
+    });
+  });
+  document.getElementById('loginForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var name=document.getElementById('lgName').value.trim(), roll=document.getElementById('lgRoll').value.trim(), pin=document.getElementById('lgPin').value.trim();
+    if(!name||!roll){ renderLoginErr('Enter your name and roll no.'); return; }
+    if(!/^\d{4}$/.test(pin)){ renderLoginErr('Your PIN must be exactly 4 digits.'); return; }
+    var k=accKey(name,roll); var acc=accounts();
+    if(acc.students[k]){
+      if(acc.students[k].pin!==hashPin(pin,k)){ renderLoginErr('That PIN does not match this name and roll no. Try again.'); return; }
+    } else {
+      acc.students[k]={name:name.replace(/\s+/g,' '), roll:roll, pin:hashPin(pin,k), created:Date.now()};
+      lsSet(ACC_KEY,acc);
+    }
+    signIn(k);
+  });
+}
+function renderLoginErr(m){
+  var n=document.getElementById('lgName').value, r=document.getElementById('lgRoll').value;
+  renderLogin(m); document.getElementById('lgName').value=n; document.getElementById('lgRoll').value=r; document.getElementById('lgPin').focus();
+}
+function tabSummary(m){
+  var st=appState[m]; if(!st) return null;
+  return TAB_DEFS.map(function(td){
+    var items=st.tabs[td.id].items, n=items.length;
+    var c=items.filter(function(i){return i.status==='correct';}).length;
+    var done=items.filter(function(i){return i.status!=='unanswered';}).length;
+    return {label:td.label, n:n, done:done, correct:c};
+  });
+}
+function renderRecord(){
+  showChrome(false);
+  var tabLabel=function(id){ var t=TAB_DEFS.find(function(x){return x.id===id;}); return t?t.label:id; };
+  var h='<div class="rec-card"><h2>'+esc(student.name)+'’s record</h2><p class="rec-empty" style="margin:0 0 12px;">Roll '+esc(student.roll)+' · Equations with More Than One Variable</p>';
+  ['learning','quiz'].forEach(function(m){
+    var sum=tabSummary(m);
+    h+='<h3>'+(m==='learning'?'📘 Learning Sheet':'📝 Quiz Mode')+'</h3>';
+    if(!sum){ h+='<p class="rec-empty">Not started yet.</p>'; return; }
+    h+='<div class="rec-table-wrap"><table class="rec-table"><thead><tr><th>Section</th><th>Progress</th><th>Correct first time</th></tr></thead><tbody>';
+    sum.forEach(function(r){ var pct=Math.round(r.done/r.n*100);
+      h+='<tr><td>'+r.label+'</td><td><span class="rec-bar"><i style="width:'+pct+'%"></i></span>'+r.done+' / '+r.n+'</td><td>'+(m==='quiz'?'—':r.correct+' / '+r.n)+'</td></tr>'; });
+    h+='</tbody></table></div>';
+  });
+  h+='</div><div class="rec-card"><h3>Finished sections</h3>';
+  if(!records.length){ h+='<p class="rec-empty">No sections finished yet. Each time you finish a tab, your score is recorded here.</p>'; }
+  else {
+    h+='<div class="rec-table-wrap"><table class="rec-table"><thead><tr><th>When</th><th>Mode</th><th>Section</th><th>Score</th></tr></thead><tbody>';
+    records.forEach(function(r){ h+='<tr><td>'+fmtDate(r.at)+'</td><td>'+(r.mode==='quiz'?'Quiz':'Learning')+'</td><td>'+tabLabel(r.tab)+'</td><td>'+r.correct+' / '+r.total+(r.mode==='learning'?' <span class="rec-empty">('+r.revealed+' revealed, '+r.skipped+' skipped)</span>':'')+'</td></tr>'; });
+    h+='</tbody></table></div>';
+  }
+  h+='</div><button class="btn btn-primary" id="btnBack">'+(MODE?'Back to practice':'Choose a mode')+'</button>';
+  document.getElementById('wrap').innerHTML=h;
+  document.getElementById('btnBack').addEventListener('click', function(){
+    if(MODE){ showChrome(true); buildTabbar(); renderSlide(); } else renderModePicker();
+  });
+  window.scrollTo({top:0});
+}
+
+/* ================= tab bar ================= */
+function buildTabbar(){
+  var el=document.getElementById('tabbar');
+  el.innerHTML = TAB_DEFS.map(function(t){
+    return '<button class="tab-btn'+(t.id===activeTab?' active':'')+'" data-tab="'+t.id+'">'+t.label+'<span class="tab-count">'+SLIDES[t.id].length+'</span></button>';
+  }).join('');
+  el.querySelectorAll('.tab-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){ activeTab=btn.dataset.tab; buildTabbar(); renderSlide(); window.scrollTo({top:0,behavior:'smooth'}); });
+  });
+}
+
+/* ================= rendering ================= */
+function canProceed(item){ return item.status==='correct'||item.status==='revealed'||item.status==='skipped'; }
+
+function renderSlide(){
+  if(!state.tabs[activeTab]){ activeTab=TAB_DEFS[0].id; }
+  var ts = state.tabs[activeTab];
+  var slides = SLIDES[activeTab];
+  if(ts.idx>=slides.length||ts.idx<0) ts.idx=0;
+  var idx = ts.idx;
+  var slide = slides[idx];
+  var item = ts.items[idx];
+
+  var tdef=TAB_DEFS.find(function(t){return t.id===activeTab;});
+  document.getElementById('spLabel').textContent = tdef.label+' · Question '+(idx+1)+' of '+slides.length;
+  document.getElementById('secSub').textContent = tdef.label+' — '+tdef.sub;
+  document.getElementById('spFill').style.width = Math.round(((idx)/(Math.max(slides.length-1,1)))*100)+'%';
+
+  var h='<div class="qcard">';
+  if(slide.kind==='mcq' || slide.kind==='ar'){
+    h += renderChoiceBody(slide, item, idx);
+  } else {
+    h += renderBlankBody(slide, item, idx);
+  }
+  h += '<div class="feedback" id="feedbackBox"></div>';
+  if(MODE==='learning' && (item.status==='correct'||item.status==='revealed')) h += solutionHTML(slide);
+  h += '</div>';
+
+  document.getElementById('wrap').innerHTML = h;
+  wireSlideEvents(slide, item, idx);
+  restoreFeedback(item);
+  renderNavbar(item);
+  updateFab();
+  saveState();
+}
+
+function solutionHTML(slide){
+  if(!slide.sol) return '';
+  return '<div class="solution"><div class="sol-h">Solution</div>'+slide.sol.split('\n').map(function(l){ return '<div class="sol-line">'+esc(l)+'</div>'; }).join('')+'</div>';
+}
+var LETTERS=['a','b','c','d'];
+function chosenHTML(slide,item){
+  var opts = slide.kind==='mcq' ? slide.opts : AR_OPTIONS;
+  if(item.choice===undefined) return '';
+  var ok=item.choice===slide.correct;
+  var h='<div class="chosen '+(ok?'ok':'bad')+'"><b>Your answer:</b> ('+LETTERS[item.choice]+') '+esc(opts[item.choice])+(ok?' ✓':' ✗')+'</div>';
+  if(!ok) h+='<div class="chosen ok"><b>Correct answer:</b> ('+LETTERS[slide.correct]+') '+esc(opts[slide.correct])+'</div>';
+  return h;
+}
+function renderChoiceBody(slide, item, idx){
+  var h='<div class="qhead"><div class="qnum">'+(idx+1)+'</div>';
+  if(slide.kind==='mcq'){
+    h += '<div class="qtext">'+esc(slide.text)+(slide.tag?'<span class="qtag">'+esc(slide.tag)+'</span>':'')+'</div>';
+  } else {
+    h += '<div class="qtext"><span class="qtag" style="margin-left:0;margin-right:6px;">A / R</span>Assertion (A): '+esc(slide.a)+'<br>Reason (R): '+esc(slide.r)+(slide.tag?'<span class="qtag">'+esc(slide.tag)+'</span>':'')+'</div>';
+  }
+  h += '</div>';
+  var opts = slide.kind==='mcq' ? slide.opts : AR_OPTIONS;
+  if(MODE==='quiz') h += '<div class="quiz-hint">Quiz mode — pick an option. The correct answer is revealed once you finish this tab.</div>';
+  var locked = MODE==='learning' && (item.status==='correct' || item.status==='revealed');
+  h += '<div class="options">';
+  opts.forEach(function(opt,i){
+    var cls='opt';
+    if(locked){
+      if(i===slide.correct) cls+=' is-correct';
+      else if(item.choice===i) cls+=' is-wrong';
+      cls+=' locked';
+    }
+    if(item.choice===i) cls+=' is-chosen';
+    h += '<label class="'+cls+'"><input type="radio" name="choice" value="'+i+'" '+(item.choice===i?'checked':'')+' '+(locked?'disabled':'')+'> <span class="opt-l">('+LETTERS[i]+')</span> <span class="opt-t">'+esc(opt)+'</span>'+(item.choice===i?'<span class="opt-tag">'+(locked?(i===slide.correct?'Your answer ✓':'Your answer ✗'):'Selected')+'</span>':'')+'</label>';
+  });
+  h += '</div>';
+  if(locked) h += chosenHTML(slide,item);
+  return h;
+}
+
+function renderBlankBody(slide, item, idx){
+  var h='<div class="qhead"><div class="qnum">'+(idx+1)+'</div><div class="qtext">';
+  if(slide.kind==='case'){ h += '<b>'+esc(slide.title)+'.</b> '+esc(slide.body); }
+  else { h += esc(slide.p); }
+  h += (slide.tag?'<span class="qtag">'+esc(slide.tag)+'</span>':'')+'</div>';
+  if(slide.marks) h += '<div class="marks-pill">'+slide.marks+'</div>';
+  h += '</div>';
+
+  var total = slide.flat.length;
+  var hasExpr = slide.flat.some(function(s){ return s.expr; });
+  var blankCount=0; slide.flat.forEach(function(s){ blankCount+=Object.keys(s.a).length; });
+
+  if(MODE==='quiz'){
+    h += '<div class="step-badge">'+blankCount+' blank'+(blankCount===1?'':'s')+' in this question</div>';
+    h += '<div class="quiz-hint">Quiz mode — fill in what you can. Correct answers are revealed once you finish this tab.</div>';
+    if(hasExpr) h += '<div class="quiz-hint">Type expressions like <b>(P-2w)/2</b>, <b>2A/b</b> or <b>V/(pi*r^2)</b>. Use ^ for powers and pi for π. Any equivalent form is accepted.</div>';
+    h += '<div class="steps">';
+    for(var qi=0; qi<total; qi++){
+      var qstep = slide.flat[qi];
+      var qss = item.stepStates[qi];
+      if(qstep.partLabel) h += '<div class="subpart-label">'+esc(qstep.partLabel)+'</div>';
+      if(qstep.orDivider) h += '<div class="or-divider">OR</div>';
+      var qline = qstep.t;
+      Object.keys(qstep.a).forEach(function(bkey){
+        var val = qss.inputs[bkey]||'';
+        var inp='<input class="blank-input'+(qstep.expr?' expr':'')+'" data-step="'+qi+'" data-bkey="'+bkey+'" value="'+esc(val)+'">';
+        qline = qline.replace('__'+bkey+'__', inp);
+      });
+      h += '<div class="step-line">'+qline+'</div>';
+    }
+    h += '</div>';
+    return h;
+  }
+
+  if(hasExpr) h += '<div class="quiz-hint">Type expressions like <b>(P-2w)/2</b>, <b>2A/b</b> or <b>V/(pi*r^2)</b>. Use ^ for powers and pi for π. Any equivalent form is accepted.</div>';
+  var locked = item.status==='correct' || item.status==='revealed';
+  var upto = locked ? total-1 : item.curStep;
+  h += '<div class="step-badge">Step '+(Math.min(item.curStep,total-1)+1)+' of '+total+'</div>';
+  h += '<div class="steps">';
+  for(var i=0;i<=upto;i++){
+    var step = slide.flat[i];
+    var ss = item.stepStates[i];
+    if(step.partLabel) h += '<div class="subpart-label">'+esc(step.partLabel)+'</div>';
+    if(step.orDivider) h += '<div class="or-divider">OR</div>';
+    var resolved = ss.status==='correct' || ss.status==='revealed';
+    var line = step.t;
+    Object.keys(step.a).forEach(function(bkey){
+      var fs = ss.inputs['fs_'+bkey];
+      var cls = fs==='correct'?'is-correct':(fs==='wrong'?'is-wrong':'');
+      var val = ss.inputs[bkey]||'';
+      var dis = resolved ? 'disabled':'';
+      var inp='<input class="blank-input '+cls+(step.expr?' expr':'')+'" data-step="'+i+'" data-bkey="'+bkey+'" value="'+esc(val)+'" '+dis+'>';
+      line = line.replace('__'+bkey+'__', inp);
+    });
+    h += '<div class="step-line'+(resolved?' resolved':'')+'">'+line+'</div>';
+    if(ss.status==='revealed'){
+      var reveals=[];
+      Object.keys(step.a).forEach(function(bkey){ reveals.push(bkey+' = '+esc(step.a[bkey])); });
+      h += '<div class="reveal-note">correct: '+reveals.join(', ')+'</div>';
+    }
+  }
+  h += '</div>';
+  return h;
+}
+
+var __flash=null;
+function restoreFeedback(item){
+  var fb=document.getElementById('feedbackBox'); if(!fb) return;
+  if(__flash){ fb.className='feedback show '+__flash.c; fb.innerHTML=__flash.h; __flash=null; return; }
+  if(MODE==='quiz'){ fb.className='feedback'; fb.innerHTML=''; return; }
+  if(item.status==='correct'){ fb.className='feedback show ok'; fb.innerHTML='<b>All done — correct!</b>'; }
+  else if(item.status==='revealed'){ fb.className='feedback show reveal'; fb.innerHTML='<b>Answer revealed above.</b> Move on whenever you’re ready.'; }
+  else if(item.status==='skipped'){ fb.className='feedback show retry'; fb.innerHTML='Skipped — revisit it anytime from the Question Palette.'; }
+  else { fb.className='feedback'; fb.innerHTML=''; }
+}
+
+function slideIsAnswered(slide,item){
+  if(slide.kind==='mcq'||slide.kind==='ar') return item.choice!==undefined;
+  return item.stepStates.some(function(ss){ return Object.keys(ss.inputs).some(function(k){ return k.indexOf('fs_')!==0 && ss.inputs[k] && String(ss.inputs[k]).trim()!==''; }); });
+}
+function renderNavbar(item){
+  var ts = state.tabs[activeTab];
+  var slides = SLIDES[activeTab];
+  var slide = slides[ts.idx];
+  var isLast = ts.idx === slides.length-1;
+  var h='';
+  h += '<button class="btn" id="btnPrev" '+(ts.idx===0?'disabled':'')+'>&larr; Previous</button>';
+
+  if(MODE==='quiz'){
+    h += '<button class="btn" id="btnSkip">Skip</button>';
+    h += '<span class="spacer"></span>';
+    h += '<button class="btn btn-primary" id="btnNext">'+(isLast?'Finish':'Next →')+'</button>';
+  } else {
+    h += '<button class="btn" id="btnSkip" '+(item.status!=='unanswered'?'disabled':'')+'>Skip</button>';
+    h += '<span class="spacer"></span>';
+    h += '<button class="btn btn-primary" id="btnCheck" '+(item.status!=='unanswered'?'disabled':'')+'>Check</button>';
+    h += '<button class="btn btn-primary" id="btnNext" '+(canProceed(item)?'':'disabled')+'>'+(isLast?'Finish':'Next →')+'</button>';
+  }
+  document.getElementById('navbarInner').innerHTML = h;
+
+  document.getElementById('btnPrev').addEventListener('click', function(){ if(ts.idx>0){ ts.idx--; renderSlide(); } });
+
+  if(MODE==='quiz'){
+    document.getElementById('btnSkip').addEventListener('click', function(){
+      item.status='skipped';
+      advanceQuiz(ts, slides);
+    });
+    document.getElementById('btnNext').addEventListener('click', function(){
+      item.status = slideIsAnswered(slide,item) ? 'answered' : 'unanswered';
+      advanceQuiz(ts, slides);
+    });
+  } else {
+    document.getElementById('btnSkip').addEventListener('click', function(){
+      if(item.status==='unanswered'){ item.status='skipped'; renderSlide(); }
+    });
+    document.getElementById('btnNext').addEventListener('click', function(){
+      if(!canProceed(item)) return;
+      if(ts.idx < slides.length-1){ ts.idx++; ts.maxReached=Math.max(ts.maxReached, ts.idx); renderSlide(); }
+      else { renderFinished(); }
+    });
+    document.getElementById('btnCheck').addEventListener('click', function(){ handleCheck(); });
+  }
+}
+function advanceQuiz(ts, slides){
+  if(ts.idx < slides.length-1){ ts.idx++; ts.maxReached=Math.max(ts.maxReached, ts.idx); renderSlide(); }
+  else { renderFinished(); }
+}
+
+function wireSlideEvents(slide, item, idx){
+  document.querySelectorAll('input[type="radio"][name="choice"]').forEach(function(r){
+    r.addEventListener('change', function(){ item.choice=parseInt(r.value,10); saveState();
+      document.querySelectorAll('.opt').forEach(function(l){ l.classList.remove('is-chosen'); var t=l.querySelector('.opt-tag'); if(t) t.remove(); });
+      var lab=r.closest('.opt'); lab.classList.add('is-chosen'); var tg=document.createElement('span'); tg.className='opt-tag'; tg.textContent='Selected'; lab.appendChild(tg); });
+  });
+  document.querySelectorAll('.blank-input').forEach(function(inp){
+    inp.addEventListener('input', function(){
+      var si=parseInt(inp.dataset.step,10), bk=inp.dataset.bkey;
+      item.stepStates[si].inputs[bk]=inp.value;
+      saveState();
+    });
+  });
+}
+
+function handleCheck(){
+  var ts = state.tabs[activeTab];
+  var slide = SLIDES[activeTab][ts.idx];
+  var item = ts.items[ts.idx];
+  var fb = document.getElementById('feedbackBox');
+
+  if(slide.kind==='mcq' || slide.kind==='ar'){
+    if(item.choice===undefined){ fb.className='feedback show err'; fb.innerHTML='Please choose an option first.'; return; }
+    var ok = item.choice===slide.correct;
+    if(ok){
+      item.status='correct'; playSuccess();
+      fb.className='feedback show ok'; fb.innerHTML='<b>Correct!</b>';
+    } else {
+      item.attempts=(item.attempts||0)+1;
+      if(item.attempts>=2){ item.status='revealed'; playReveal(); }
+      else { playWrong(); fb.className='feedback show retry'; fb.innerHTML='<b>Not quite — try again</b> (attempt 1 of 2) <span class="attempts-dots"><span class="used"></span><span></span></span>'; __flash={c:'retry',h:'<b>Not quite — try again</b> (attempt 1 of 2) <span class="attempts-dots"><span class="used"></span><span></span></span>'}; }
+    }
+    renderSlide();
+    return;
+  }
+
+  // blank / case
+  var step = slide.flat[item.curStep];
+  var ss = item.stepStates[item.curStep];
+  var blanks = Object.keys(step.a);
+  var missing = blanks.some(function(k){ return !ss.inputs[k] || String(ss.inputs[k]).trim()===''; });
+  if(missing){ fb.className='feedback show err'; fb.innerHTML='Fill in every blank in this step before checking.'; return; }
+
+  var allGood=true;
+  blanks.forEach(function(k){
+    var good=answerMatches(ss.inputs[k], step.a[k], step.accept, step.expr);
+    ss.inputs['fs_'+k]=good?'correct':'wrong';
+    if(!good) allGood=false;
+  });
+
+  if(allGood){
+    ss.status='correct'; playSuccess();
+    advanceStepOrFinish(item, slide);
+  } else {
+    ss.attempts=(ss.attempts||0)+1;
+    if(ss.attempts>=2){
+      ss.status='revealed'; playReveal();
+      advanceStepOrFinish(item, slide);
+    } else {
+      playWrong();
+      fb.className='feedback show retry';
+      fb.innerHTML='<b>Not quite — try again</b> (attempt 1 of 2) <span class="attempts-dots"><span class="used"></span><span></span></span>'; __flash={c:'retry',h:'<b>Not quite — try again</b> (attempt 1 of 2) <span class="attempts-dots"><span class="used"></span><span></span></span>'};
+      renderSlide();
+      return;
+    }
+  }
+  renderSlide();
+}
+
+function advanceStepOrFinish(item, slide){
+  var total = slide.flat.length;
+  var hasExpr = slide.flat.some(function(s){ return s.expr; });
+  if(item.curStep < total-1){
+    item.curStep++;
+  } else {
+    var anyRevealed = item.stepStates.some(function(ss){ return ss.status==='revealed'; });
+    item.status = anyRevealed ? 'revealed' : 'correct';
+  }
+}
+
+/* ================= palette ================= */
+var overlay=document.getElementById('overlay');
+function statusOf(tabId,i){
+  var ts=state.tabs[tabId];
+  if(i>ts.maxReached) return 'locked';
+  if(i===ts.idx) return 'current';
+  return ts.items[i].status==='unanswered' ? 'locked' : ts.items[i].status;
+}
+function buildPalette(){
+  var slides=SLIDES[activeTab];
+  document.getElementById('paletteTitle').textContent = TAB_DEFS.find(function(t){return t.id===activeTab;}).label+' · Question palette';
+  var body=document.getElementById('paletteBody');
+  var html='';
+  for(var i=0;i<slides.length;i++){
+    html += '<div class="chip" data-status="'+statusOf(activeTab,i)+'" data-idx="'+i+'">'+(i+1)+'</div>';
+  }
+  body.innerHTML = html;
+  body.querySelectorAll('.chip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      var i=parseInt(chip.dataset.idx,10);
+      var ts=state.tabs[activeTab];
+      if(i>ts.maxReached){ showToast('Finish the earlier questions to unlock this one.'); return; }
+      ts.idx=i; closePalette(); renderSlide();
+    });
+  });
+}
+function openPalette(){ buildPalette(); overlay.classList.add('show'); }
+function closePalette(){ overlay.classList.remove('show'); }
+var toastTimer;
+function showToast(msg){
+  var t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer=setTimeout(function(){ t.classList.remove('show'); },2200);
+}
+document.getElementById('paletteFab').addEventListener('click', openPalette);
+document.getElementById('paletteClose').addEventListener('click', closePalette);
+overlay.addEventListener('click', function(e){ if(e.target===overlay) closePalette(); });
+
+function updateFab(){
+  var slides=SLIDES[activeTab];
+  var done=state.tabs[activeTab].items.filter(function(it){ return it.status==='correct'||it.status==='revealed'||it.status==='skipped'; }).length;
+  document.getElementById('fabBadge').textContent = done+'/'+slides.length;
+}
+
+/* ================= overall progress + finish ================= */
+function updateChapterProgress(){
+  var total=0, done=0;
+  TAB_DEFS.forEach(function(td){
+    state.tabs[td.id].items.forEach(function(it){
+      total++;
+      if(it.status==='correct'||it.status==='revealed'||it.status==='skipped') done++;
+    });
+  });
+  var pct = total>0 ? Math.round((done/total)*100) : 0;
+  document.getElementById('cpFill').style.width=pct+'%';
+  document.getElementById('cpLabel').textContent=pct+'% complete';
+}
+function isSlideCorrect(tabId,i){
+  var slide=SLIDES[tabId][i], item=state.tabs[tabId].items[i];
+  if(slide.kind==='mcq'||slide.kind==='ar') return item.choice===slide.correct;
+  return slide.flat.every(function(step,si){
+    var ss=item.stepStates[si];
+    return Object.keys(step.a).every(function(k){ return answerMatches(ss.inputs[k], step.a[k], step.accept, step.expr); });
+  });
+}
+function isSlideAttempted(tabId,i){
+  var slide=SLIDES[tabId][i], item=state.tabs[tabId].items[i];
+  if(slide.kind==='mcq'||slide.kind==='ar') return item.choice!==undefined;
+  return slide.flat.some(function(step,si){
+    var ss=item.stepStates[si];
+    return Object.keys(step.a).some(function(k){ return ss.inputs[k] && String(ss.inputs[k]).trim()!==''; });
+  });
+}
+function slideLabel(slide){
+  var t = slide.kind==='case' ? slide.title : (slide.kind==='ar' ? slide.a : (slide.p||slide.text||''));
+  t = String(t);
+  return t.length>90 ? t.slice(0,90)+'…' : t;
+}
+function slideAnswerText(slide, item, correctSide){
+  if(slide.kind==='mcq'||slide.kind==='ar'){
+    var opts = slide.kind==='mcq' ? slide.opts : AR_OPTIONS;
+    if(correctSide) return '('+LETTERS[slide.correct]+') '+opts[slide.correct];
+    return item.choice!==undefined ? '('+LETTERS[item.choice]+') '+opts[item.choice] : '— not attempted —';
+  }
+  return slide.flat.map(function(step,si){
+    var ss=item.stepStates[si];
+    return Object.keys(step.a).map(function(k){
+      return correctSide ? step.a[k] : (ss.inputs[k] || '—');
+    }).join(', ');
+  }).join('  |  ');
+}
+
+function renderFinished(){
+  if(MODE==='quiz'){ renderQuizResults(); return; }
+  var ts=state.tabs[activeTab];
+  var correct=ts.items.filter(function(i){return i.status==='correct';}).length;
+  var revealed=ts.items.filter(function(i){return i.status==='revealed';}).length;
+  var skipped=ts.items.filter(function(i){return i.status==='skipped';}).length;
+  var h='<div class="qcard done-card"><div class="big">✨</div><h2>Tab complete</h2>';
+  h+='<p style="color:var(--ink-soft);font-size:14px;">You worked through all '+ts.items.length+' questions in this tab.</p>';
+  if(!ts.recorded){ ts.recorded=true; addRecord('learning', activeTab, correct, revealed, skipped, ts.items.length); }
+  h+='<div class="score-pills">'+
+     '<span class="score-pill" style="background:var(--success-soft);color:var(--success);">'+correct+' correct</span>'+
+     '<span class="score-pill" style="background:var(--danger-soft);color:var(--danger);">'+revealed+' revealed</span>'+
+     '<span class="score-pill" style="background:var(--gold-soft);color:var(--retry-text);">'+skipped+' skipped</span></div>'+
+     '<button class="btn btn-primary" id="btnReview">Review from question 1</button></div>';
+  document.getElementById('wrap').innerHTML=h;
+  document.getElementById('navbarInner').innerHTML='';
+  document.getElementById('btnReview').addEventListener('click', function(){ ts.idx=0; ts.recorded=false; renderSlide(); });
+  updateChapterProgress(); saveState();
+}
+
+function renderQuizResults(){
+  var ts=state.tabs[activeTab];
+  var slides=SLIDES[activeTab];
+  var correctCount=0, attemptedCount=0;
+  var rowsHtml = slides.map(function(slide,i){
+    var item=ts.items[i];
+    var ok=isSlideCorrect(activeTab,i);
+    var att=isSlideAttempted(activeTab,i);
+    if(ok) correctCount++;
+    if(att) attemptedCount++;
+    var tagCls = ok?'ok':(att?'bad':'na');
+    var tagText = ok?'Correct':(att?'Incorrect':'Not attempted');
+    var row='<div class="review-row">';
+    row+='<span class="review-tag '+tagCls+'">Q'+(i+1)+' · '+tagText+'</span>';
+    row+='<div class="review-q">'+esc(slideLabel(slide))+'</div>';
+    row+='<div class="review-ans"><b>Your answer:</b> '+esc(slideAnswerText(slide,item,false))+'</div>';
+    if(!ok) row+='<div class="review-ans" style="color:var(--success);"><b>Correct answer:</b> '+esc(slideAnswerText(slide,item,true))+'</div>';
+    if(slide.sol) row+='<details class="rev-sol"><summary>Show solution</summary>'+solutionHTML(slide)+'</details>';
+    row+='</div>';
+    return row;
+  }).join('');
+
+  addRecord('quiz', activeTab, correctCount, 0, 0, slides.length);
+  var h='<div class="qcard done-card" style="text-align:left;">';
+  h+='<div style="text-align:center;"><div class="big">🏁</div><h2>Quiz complete</h2>';
+  h+='<p style="color:var(--ink-soft);font-size:14px;">'+correctCount+' / '+slides.length+' correct · '+attemptedCount+' attempted</p></div>';
+  h+='<div style="margin-top:16px;">'+rowsHtml+'</div>';
+  h+='<div style="text-align:center;margin-top:6px;"><button class="btn btn-primary" id="btnReview">Review from question 1</button></div>';
+  h+='</div>';
+  document.getElementById('wrap').innerHTML=h;
+  document.getElementById('navbarInner').innerHTML='';
+  document.getElementById('btnReview').addEventListener('click', function(){ ts.idx=0; renderSlide(); });
+  playSuccess();
+  updateChapterProgress(); saveState();
+}
+
+/* ================= mode picker ================= */
+function updateModePill(){
+  var btn=document.getElementById('modePill');
+  if(!btn) return;
+  btn.textContent = MODE==='quiz' ? '📝 Quiz Mode · switch' : '📘 Learning Sheet · switch';
+}
+function showChrome(show){
+  document.querySelector('.tabbar').style.display = show?'':'none';
+  document.querySelector('.slide-progress').style.display = show?'':'none';
+  document.querySelector('.navbar').style.display = show?'':'none';
+  document.getElementById('paletteFab').style.display = show?'':'none';
+}
+function renderModePicker(){
+  showChrome(false);
+  var wrap=document.getElementById('wrap');
+  wrap.innerHTML =
+    '<div class="mode-pick">'+
+      '<div class="mode-card" data-pick="learning"><div class="mode-icon">📘</div><h3>Learning Sheet</h3>'+
+      '<p>Work through each question step by step with instant feedback — two tries, then the correct value is revealed right there so you can keep moving.</p></div>'+
+      '<div class="mode-card" data-pick="quiz"><div class="mode-icon">📝</div><h3>Quiz Mode</h3>'+
+      '<p>Attempt every question with no hints along the way. Your score and the full answer key are shown together once you finish the tab — just like the real exam.</p></div>'+
+    '</div>';
+  wrap.querySelectorAll('[data-pick]').forEach(function(card){
+    card.addEventListener('click', function(){
+      setMode(card.dataset.pick);
+      document.getElementById('modePill').hidden=false;
+      updateModePill();
+      showChrome(true);
+      buildTabbar();
+      renderSlide();
+    });
+  });
+}
+document.getElementById('modePill').addEventListener('click', function(){
+  if(!appState.mode){ return; }
+  setMode(appState.mode==='quiz' ? 'learning' : 'quiz');
+  updateModePill();
+  showChrome(true);
+  buildTabbar();
+  renderSlide();
+});
+
+/* ================= boot ================= */
+var _origRenderSlide = renderSlide;
+renderSlide = function(){ _origRenderSlide(); updateChapterProgress(); updateModePill(); };
+
+renderLogin();
+})();
+</script>
 </body>
 </html>
